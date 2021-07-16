@@ -46,6 +46,8 @@ R --version
 ```
 rstudio DownsampledReads.R
 ```
+# Illustration
+![4-way figure](https://github.com/Nicolas-Radomski/DownsampledReads/illustration.png)
 # Acknowledgment
 My old colleague Laurent Guillier with whom I learned a lot
 # Author
