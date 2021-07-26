@@ -25,7 +25,7 @@ rstudio --version
 ```
 R --version
 ```
-## 2/ Update and ungrade apt-get
+## 2/ Update and upgrade apt-get
 ```
 sudo apt-get update
 sudo apt-get upgrade
