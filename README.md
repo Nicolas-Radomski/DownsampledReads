@@ -1,5 +1,5 @@
 # Usage
-The R script DownsampledReads.R aims at performing 4-way figures and linear regressions from estimations of depth and breadth coverages from downsampled paired-end reads described in the "Listeria-cgMLST-Additional-file-1.tsv" of the article entitled "In vitro and in silico parameters for precise cgMLST typing of Listeria monocytogenes".
+The R script DownsampledReads.R aims at performing 4-way figures and linear regressions based on estimations of depth and breadth coverages from downsampled paired-end reads described in the "Listeria-cgMLST-Additional-file-1.tsv" of the article entitled "In vitro and in silico parameters for precise cgMLST typing of Listeria monocytogenes".
 # Dependencies
 The R script DownsampledReads.R was prepared and tested with R version 3.6.3 and RStudio 1.3.1093.
 - library(ggplot2)
