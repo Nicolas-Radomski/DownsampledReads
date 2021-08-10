@@ -49,6 +49,6 @@ rstudio DownsampledReads.R
 # Illustration
 ![4-way figure](https://github.com/Nicolas-Radomski/DownsampledReads/blob/main/illustration.png)
 # Acknowledgment
-My old colleague Laurent Guillier with whom I learned a lot
+My former colleague Laurent Guillier with whom I learned a lot
 # Author
 Nicolas Radomski
