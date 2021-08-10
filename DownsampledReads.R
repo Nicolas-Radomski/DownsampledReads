@@ -61,7 +61,7 @@ names(data_long)[names(data_long) == "read_depth"] <- "Estimated_read_depth"
 names(data_long)[names(data_long) == "mapping"] <- "Mapping"
 colnames(data_long)
 
-# plot boxplot
+# plot a 4-way figures with boxplots
 p = ggplot(data = data_long, aes(x = Targeted_depth, y = Estimated_read_depth)) +
   theme_light(base_size = 16) +
   geom_boxplot(color = "#000000", fill = "#A9A9A9", coef = 6, outlier.colour = "white", outlier.shape = 0, outlier.size = 0) +
@@ -95,61 +95,7 @@ colnames(data_short)
 names(data_short)[names(data_short) == "reference_genome"] <- "Reference"
 colnames(data_short)
 
-#plot points
-p = ggplot(data = data_short, aes(x = BBMap, y = INNUca)) +
-  theme_light(base_size = 16) +
-  geom_point(size = 4, color = "#000000", fill = "#A9A9A9", alpha = 0.7, shape = ".") +
-  theme(axis.text.x = element_text (color = "#000000", size = 10, angle = 90)) +
-  theme(axis.text.y = element_text (color = "#000000", size = 10, angle = 0)) +
-  scale_x_continuous(name = "Estimated read depth (X) from BBMap", limits = c(0, 110), breaks = c(0,10,20,30,40,50,60,70,80,90,100)) +
-  scale_y_continuous(name = "Estimated read depth (X) from INNUca", limits = c(0, 110), breaks = c(0,10,20,30,40,50,60,70,80,90,100)) +
-  theme(plot.title = element_text(color="black", size=12, face="bold.italic"),
-        strip.text.x = element_text(size=16, face = "bold"),
-        strip.text.y = element_text(size=16, face="bold"),
-        strip.background = element_rect(colour="black", fill="#A9A9A9")) +
-  facet_wrap(~ Reference, ncol = 3)
-p
-plot(p)
-ggsave("downsampling-points.tiff",device="tiff",width=17,height=17,units="cm",dpi="retina")
-ggsave("downsampling-points.pdf",device="pdf",width=17,height=17,units="cm",dpi="retina")
-dev.off()
-
-# plot lines
-p = ggplot(data = data_short, aes(x = BBMap, y = INNUca, group=Reference)) +
-  theme_light(base_size = 16) +
-  geom_point(aes(shape = Reference, color = Reference), size = 4, fill = "#A9A9A9") +
-  geom_smooth(aes(shape = Reference, color = Reference), size = 0.5, fill = "#A9A9A9", method=lm, linetype="dashed", se=FALSE) +
-  scale_shape_manual(values=c(20, 20, 20)) +
-  scale_color_manual(values=c('#FF0000','#0000FF', '#008000')) +
-  #scale_color_manual(values=c('#000000','#A9A9A9', '#D3D3D3')) +
-  scale_size_manual(values=c(20,1,1)) +
-  theme(legend.position="bottom") +
-  scale_x_continuous(name = "Estimated read depth (X) from BBMap", limits = c(0, 105), breaks = c(0,10,20,30,40,50,60,70,80,90,100)) +
-  scale_y_continuous(name = "Estimated read depth (X) from INNUca", limits = c(0, 105), breaks = c(0,10,20,30,40,50,60,70,80,90,100))
-p
-plot(p)
-ggsave("downsampling-lines-A.tiff",device="tiff",width=17,height=17,units="cm",dpi="retina")
-ggsave("downsampling-lines-A.pdf",device="pdf",width=17,height=17,units="cm",dpi="retina")
-dev.off()
-
-#plot lines
-p = ggplot(data = data_short, aes(x = BBMap, y = INNUca, group=Reference)) +
-  theme_light(base_size = 16) +
-  geom_point(aes(shape = Reference, color = Reference, size = Reference)) +
-  geom_smooth(aes(shape = Reference, color = Reference), size = 0.5, fill = "#A9A9A9", method=lm, linetype="dashed", se=FALSE) +
-  scale_shape_manual(values=c(20, 20, 20)) +
-  scale_color_manual(values=c('#FF0000','#0000FF', '#008000')) +
-  scale_size_manual(values=c(3,3,3)) +
-  theme(legend.position="bottom") +
-  scale_x_reverse(name = "Estimated read depth (X) from BBMap", limits = c(105, 10), breaks = c(100,90,80,70,60,50,40,30,20,10)) +
-  scale_y_continuous(name = "Estimated read depth (X) from INNUca", limits = c(10, 105), breaks = c(10,20,30,40,50,60,70,80,90,100))
-p
-plot(p)
-ggsave("downsampling-lines-B.tiff",device="tiff",width=17,height=17,units="cm",dpi="retina")
-ggsave("downsampling-lines-B.pdf",device="pdf",width=17,height=17,units="cm",dpi="retina")
-dev.off()
-
-#plot lines
+#plot linear correlations and perform linear regressions
 my.formula <- y ~ x
 p = ggplot(data = data_short, aes(x = BBMap, y = INNUca, group=Reference, color=Reference)) +
   theme_light(base_size = 16) +
@@ -216,6 +162,7 @@ targeted_read_depth     depth   breadth
 8                   30  30.87276 0.4860090
 9                   20  21.56162 0.2892141
 10                  10  10.93101 0.1416479
+
 rm(comment)
 
 ## BBMap and INNUca mappers included
@@ -233,6 +180,7 @@ Targeted_depth BBMap_mean  BBMap_sd INNUca_mean INNUca_sd
 8       Dr30-Dk23   30.87276 0.4860090    29.74381 1.2500809
 9       Dr20-Dk16   21.56162 0.2892141    21.15881 0.9643327
 10       Dr10-Dk8   10.93101 0.1416479    11.23571 0.1411130
+
 rm(comment)
 
 ## BBMap and INNUca mappers for ATCC19114
@@ -250,6 +198,7 @@ Targeted_depth BBMap_mean  BBMap_sd INNUca_mean INNUca_sd
 8       Dr30-Dk23   30.72116 0.3842883    29.87214 1.5611691
 9       Dr20-Dk16   21.48291 0.2463212    20.94714 0.8959089
 10       Dr10-Dk8   10.89034 0.1265280    11.27143 0.1204388
+
 rm(comment)
 
 ## BBMap and INNUca mappers for ATCC19115
@@ -259,7 +208,7 @@ comment <- scan(what="character")
 Targeted_depth BBMap_mean  BBMap_sd INNUca_mean INNUca_sd
 1      Dr100-Dk75  101.91241 1.4271331    96.20643 1.7512220
 2       Dr90-Dk68   92.28549 1.3594681    87.24143 2.3385527
-3       Dr80-Dk60   81.27268 1.2097439  count(data_salmonella$activity)  78.25357 1.7086774
+3       Dr80-Dk60   81.27268 1.2097439    78.25357 1.7086774
 4       Dr70-Dk53   71.65799 1.0520474    67.75643 1.5990700
 5       Dr60-Dk45   60.68190 0.8846797    58.14286 1.4678893
 6       Dr50-Dk38   51.08552 0.7836481    48.57357 1.5710095
@@ -267,6 +216,7 @@ Targeted_depth BBMap_mean  BBMap_sd INNUca_mean INNUca_sd
 8       Dr30-Dk23   30.82356 0.3762439    29.53286 1.1123186
 9       Dr20-Dk16   21.53121 0.2238438    20.73786 0.8668704
 10       Dr10-Dk8   10.91991 0.1202191    11.20714 0.1206666
+
 rm(comment)
 
 ## BBMap and INNUca mappers for ATCCBAA679
@@ -284,6 +234,7 @@ Targeted_depth BBMap_mean  BBMap_sd INNUca_mean INNUca_sd
 8       Dr30-Dk23   31.07356 0.6204311    29.82643 1.0867425
 9       Dr20-Dk16   21.67072 0.3640566    21.79143 0.8418373
 10       Dr10-Dk8   10.98279 0.1673812    11.22857 0.1772811
+
 rm(comment)
 
 # correlation test
@@ -296,35 +247,38 @@ cor(x=data_short_ATCC19114$BBMap, y=data_short_ATCC19114$INNUca, method="pearson
 ### ATCC19114
 cor.test(x=data_short_ATCC19114$BBMap, y=data_short_ATCC19114$INNUca, method=c("pearson"))
 comment <- scan(what="character")
-Pearson's product-moment correlation
+Pearsons product-moment correlation
 data:  data_short_ATCC19114$BBMap and data_short_ATCC19114$INNUca
 t = 239.22, df = 138, p-value < 2.2e-16
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
  0.9983180 0.9991388
 sample estimates: cor 0.9987964 
+
 rm(comment)
 
 ### ATCC19115
 cor.test(x=data_short_ATCC19115$BBMap, y=data_short_ATCC19115$INNUca, method=c("pearson"))
 comment <- scan(what="character")
-Pearson's product-moment correlation
+Pearsons product-moment correlation
 data:  data_short_ATCC19115$BBMap and data_short_ATCC19115$INNUca
 t = 224.06, df = 138, p-value < 2.2e-16
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
   0.9980832 0.9990185
 sample estimates: cor 0.9986283
+
 rm(comment)
 
 ### ATCCBAA679
 cor.test(x=data_short_ATCCBAA679$BBMap, y=data_short_ATCCBAA679$INNUca, method=c("pearson"))
 comment <- scan(what="character")
-Pearson's product-moment correlation
+Pearsons product-moment correlation
 data:  data_short_ATCCBAA679$BBMap and data_short_ATCCBAA679$INNUca
 t = 208.95, df = 138, p-value < 2.2e-16
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
  0.9977969 0.9988718
 sample estimates: cor 0.9984234 
+
 rm(comment)
