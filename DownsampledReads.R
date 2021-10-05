@@ -4,7 +4,7 @@
 rm(list=ls())
 
 # set working directory
-setwd("/home/Downloads/DownsampledReads")
+setwd("/PathTo/RstudioWorkingDirectory/DownsampledReads")
 
 # install regular packages
 install.packages("ggplot2")
