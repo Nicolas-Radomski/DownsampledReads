@@ -11,7 +11,7 @@ The R script DownsampledReads.R was prepared and tested with R version 3.6.3 and
 ## 1/ Install R (from configured sources)
 ```
 sudo apt update
-sudo apt -y install r-base
+sudo apt install r-base
 R --version
 ```
 ## 2/ Install RStudio (from dowloaded rstudio-1.3.1093-amd64.deb)
