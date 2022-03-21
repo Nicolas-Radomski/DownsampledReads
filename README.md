@@ -49,7 +49,7 @@ rstudio DownsampledReads.R
 # Illustration
 ![4-way figure](https://github.com/Nicolas-Radomski/DownsampledReads/blob/main/illustration.png)
 # Reference
-Palma F., Mangone I., Janowicz A., Moura A., Chiaverini A., Torresi M., Garofolo G., Criscuolo A., Brisse S., Di Pasquale A., Cammà C. and Radomski N. In vitro and in silico parameters for precise cgMLST typing of Listeria monocytogenes 2021, under reviewing
+Palma F., Mangone I., Janowicz A., Moura A., Chiaverini A., Torresi M., Garofolo G., Criscuolo A., Brisse S., Di Pasquale A., Cammà C. and Radomski N. In vitro and in silico parameters for precise cgMLST typing of Listeria monocytogenes. 2022, BMC Genomics, XX(X): XXX, doi: 10.1186/s12864-022-08437-4
 # Acknowledgment
 My former colleague Laurent Guillier with whom I learned a lot about R
 # Author
